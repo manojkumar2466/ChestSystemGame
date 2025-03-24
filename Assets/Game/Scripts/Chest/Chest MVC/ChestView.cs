@@ -35,7 +35,7 @@ public class ChestView : MonoBehaviour
 
     private void OnChestSlotButtonClicked()
     {
-
+        UIManager.Instance.SetupChestPopup(data);
     }
     void Start()
     {

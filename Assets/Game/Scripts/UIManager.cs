@@ -6,16 +6,18 @@ using UnityEngine.UI;
 public class UIManager : GenericSingleton<UIManager>
 {
     [SerializeField] private Button chestSpawnButton;
-    [SerializeField] private GameObject PopupGameObject;
+    [SerializeField] public GameObject PopupGameObject;
 
     //SlotFull
     [SerializeField] private GameObject SlotFullPopup;
     [SerializeField] private Button slotFullCancelButton;
 
+    [SerializeField] private ChestPopup chestPopup;
+
 
     private void Start()
     {
-        PopupGameObject.SetActive(false);
+        SetPopup(false);
         chestSpawnButton.onClick.AddListener(OnChestSpawnButtonClicked);
         slotFullCancelButton.onClick.AddListener(OnSoltFullCancelButtonClicked);
     }
@@ -23,15 +25,27 @@ public class UIManager : GenericSingleton<UIManager>
     private void OnSoltFullCancelButtonClicked()
     {
         SlotFullPopup.SetActive(false);
-        PopupGameObject.SetActive(false);
+        SetPopup(false);
     }
     private void OnChestSpawnButtonClicked()
     {
         if (!ChestService.Instance.SpawnChestIfSlotAvaliable())
         {
-            PopupGameObject.SetActive(true);
+            SetPopup(true); ;
             SlotFullPopup.SetActive(true);
         }
     }
 
+
+    public void SetupChestPopup(ChestDataSO data)
+    {
+        SetPopup(true);
+        chestPopup.gameObject.SetActive(true);
+        chestPopup.Initialize(data);
+    }
+
+    public void SetPopup(bool toogle)
+    {
+        PopupGameObject.SetActive(toogle);
+    }
 }

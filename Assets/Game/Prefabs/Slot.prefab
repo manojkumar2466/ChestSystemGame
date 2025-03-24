@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChestIcon: {fileID: 1945543937}
-  ChestSlotButton: {fileID: 6019179287110219419}
+  ChestSlotButton: {fileID: 299505555}
   chestStatusText: {fileID: 1201885665}
   arenaGameobject: {fileID: 4194298593101310651}
   openNowText: {fileID: 508967542}
