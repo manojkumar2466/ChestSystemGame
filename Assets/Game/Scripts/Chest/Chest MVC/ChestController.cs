@@ -6,10 +6,10 @@ public class ChestController : MonoBehaviour
 {
     private ChestDataSO chestData;
    
-    public ChestController(ChestDataSO chestData)
+    public ChestController(ChestDataSO chestData, ChestView chestView)
     {
         this.chestData = chestData;
-        //CreateView
-        //createData;
+        chestView.SetController(this);
+        chestView.InitializeChest(chestData);
     }
 }
