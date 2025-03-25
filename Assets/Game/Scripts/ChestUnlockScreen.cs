@@ -7,27 +7,27 @@ using UnityEngine.UI;
 public class ChestUnlockScreen : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI rewardCountText;
-    [SerializeField] private TextMeshProUGUI rewardsToIncreaseText;
+    [SerializeField] private TextMeshProUGUI rewardTypeCountText;
     [SerializeField] Image rewardTypeImage;
     [SerializeField] Sprite goldImage;
     [SerializeField] Sprite gemImage;
-    private Button button;
+    [SerializeField] Image chestUnlockImage;
+    [SerializeField] Button chestButton;
     private int rewardCount=1;
     ChestDataSO data;
     ChestController chestController;
 
     public void Initialize(ChestDataSO data, ChestController controller)
     {
-        button = GetComponent<Button>();
-        button.onClick.AddListener(CollectReward);
         this.data = data;
         CollectReward();
         chestController = controller;
+        chestUnlockImage.sprite = data.chestUnlockedIcon;
 
     }
    
 
-    private void CollectReward()
+    public void CollectReward()
     {
         if (rewardCount == 1)
         {
@@ -35,7 +35,7 @@ public class ChestUnlockScreen : MonoBehaviour
             int random = Random.Range(data.minCoins, data.maxCoins);
             UIManager.Instance.SetCoinsCount(random);
             rewardCountText.text = rewardCount.ToString();
-            rewardsToIncreaseText.text = random.ToString();
+            rewardTypeCountText.text = random.ToString();
             rewardCount++;
         }
         else if (rewardCount == 2)
@@ -43,7 +43,8 @@ public class ChestUnlockScreen : MonoBehaviour
             rewardTypeImage.sprite = gemImage;
             int random = Random.Range(data.minGems, data.maxGems);
             UIManager.Instance.SetGemsCount(random);
-            rewardsToIncreaseText.text = random.ToString();
+            rewardCountText.text = rewardCount.ToString();
+            rewardTypeCountText.text = random.ToString();
             rewardCount++;
             
 
@@ -52,6 +53,7 @@ public class ChestUnlockScreen : MonoBehaviour
             UIManager.Instance.SetPopup(false);
             this.gameObject.SetActive(false);
             chestController.RewardCollected();
+            rewardCount = 1;
         }
         
 

@@ -14,7 +14,8 @@ public enum EChestStatus
 {
     Locked,
     Unlocking,
-    Unlocked
+    Unlocked,
+    Opened
 }
 
 public class ChestService : GenericSingleton<ChestService>

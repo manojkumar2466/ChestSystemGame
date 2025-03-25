@@ -14,6 +14,7 @@ public class ChestController : MonoBehaviour
         chestView.SetController(this);
         chestView.InitializeChest(chestData);
         this.chestView = chestView;
+        unlockScreen=UIManager.Instance.chestUnlockScreen.GetComponent<ChestUnlockScreen>();
     }
 
     public void StartTimerOnChest()
@@ -26,10 +27,14 @@ public class ChestController : MonoBehaviour
         UIManager.Instance.EnableChestUnlockScreen(chestData, this);
     }
 
-    public void RewardCollected()
+    public void OpenChestUsingGems()
     {
+        chestView.OpenChestUsingGems();
+    }
+    public void RewardCollected()
+    {        
         ChestService.Instance.DeleteController(this);
-        
+        chestView.OnChestRewardCollected();
     }
 
 }

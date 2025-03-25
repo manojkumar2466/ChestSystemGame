@@ -48,6 +48,8 @@ public class ChestPopup : MonoBehaviour
 
     private void OnGemUnlockButtonClicked()
     {
-
+        this.gameObject.SetActive(false);
+        UIManager.Instance.SetPopup(false);
+        ChestSlotManager.Instance.currentChestController.OpenChestUsingGems();
     }
 }
