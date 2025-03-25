@@ -5,10 +5,9 @@ using UnityEngine;
 public class ChestSlotManager : GenericSingleton<ChestSlotManager>
 {
     [SerializeField] private List<ChestSlot> chestSlotList;
-    void Start()
-    {
-        
-    }
+
+    public ChestController currentChestController;
+  
 
 
     public ChestSlot GetChestSlot()
@@ -26,13 +25,5 @@ public class ChestSlotManager : GenericSingleton<ChestSlotManager>
         }
         return null;
     }
-    public void SpawnChest()
-    {
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }
